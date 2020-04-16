@@ -1,0 +1,16 @@
+#!/bin/bash -l
+#SBATCH -A g2020008
+#SBATCH -p core
+#SBATCH -n 2
+#SBATCH -t 04:00:00
+#SBATCH -J 3_BWA_analysis
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user Elin.Antonsson.5203@student.uu.se
+
+# Load modules
+module load bioinfo-tools
+module load bwa
+
+# Your commands
+bwa index /home/elan5203/analysis/1_analysis_canu/1_pacbio_assembly_canu.contigs.fasta
+bwa mem /home/elan5203/analysis/1_analysis_canu/1_pacbio_assembly_canu.contigs.fasta /home/elan5203/data/raw_data/illumina/SRR6058604_scaffold_06.1P.fastq.gz /home/elan5203/data/raw_data/illumina/SRR6058604_scaffold_06.2P.fastq.gz > /home/elan5203/analysis/3_analysis_bwa/3_bwa.sam

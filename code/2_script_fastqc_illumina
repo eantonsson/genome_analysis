@@ -1,0 +1,16 @@
+#!/bin/bash -l
+#SBATCH -A g2020008
+#SBATCH -p core
+#SBATCH -n 2
+#SBATCH -t 02:00:00
+#SBATCH -J 2_job_fastqc_illumina_analysis
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user Elin.Antonsson.5203@student.uu.se
+
+# Load modules
+module load bioinfo-tools
+module load FastQC
+
+# Your commands
+fastqc -o /home/elan5203/analysis/2_fastqc_illumina /home/elan5203/data/raw_data/SRR6058604_scaffold_06.1P.fastq.gz /home/elan5203/data/raw_data/SRR6058604_scaffold_06.2P.fastq.gz 
+

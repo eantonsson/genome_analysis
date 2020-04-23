@@ -1,0 +1,8 @@
+
+# Load modules
+module load bioinfo-tools
+module load trimmomatic
+
+# Your commands
+java -jar $TRIMMOMATIC_HOME/trimmomatic.jar PE -threads 2 /home/elan5203/data/raw_data/transcriptome/untrimmed/SRR6040095_scaffold_06.1.fastq.gz /home/elan5203/data/raw_data/transcriptome/untrimmed/SRR6040095_scaffold_06.2.fastq.gz /home/elan5203/analysis/7_analysis_trimmomatic/SRR6040095_scaffold_06.1P.trimmed.fastq /home/elan5203/analysis/7_analysis_trimmomatic/SRR6040095_scaffold_06.1U.trimmed.fastq /home/elan5203/analysis/7_analysis_trimmomatic/SRR6040095_scaffold_06.2P.trimmed.fastq /home/elan5203/analysis/7_analysis_trimmomatic/SRR6040095_scaffold_06.2U.trimmed.fastq ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 LEADING:3
+

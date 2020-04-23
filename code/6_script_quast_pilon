@@ -1,0 +1,16 @@
+#!/bin/bash -l
+#SBATCH -A g2020008
+#SBATCH -p core
+#SBATCH -n 2
+#SBATCH -t 01:00:00
+#SBATCH -J 6_quast_pilon
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user Elin.Antonsson.5203@student.uu.se
+
+# Load modules
+module load bioinfo-tools
+module load quast
+
+# Your commands
+quast.py -r quast.py -R /home/elan5203/data/raw_data/reference/reference_whole_genome_scaffold_6.fasta -o /home/elan5203/analysis/6_analysis_quast_pilon/ /home/elan5203/analysis/4_analysis_pilon/4_pilon_output.fasta
+

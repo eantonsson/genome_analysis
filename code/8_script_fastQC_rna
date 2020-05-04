@@ -1,0 +1,41 @@
+#!/bin/bash -l
+#SBATCH -A g2020008
+#SBATCH -p core
+#SBATCH -n 2
+#SBATCH -t 01:00:00
+#SBATCH -J 8_fastQC_rna_analysis
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user Elin.Antonsson.5203@student.uu.se
+
+# Load modules
+module load bioinfo-tools
+module load FastQC
+
+#SRR6040095 aril 1 - the one i trimmed myself 
+fastqc -o /home/elan5203/analysis/8_analysis_fastQC_rna /home/elan5203/analysis/7_analysis_trimmomatic/SRR6040095_scaffold_06.*
+
+#SRR6040092 leaf
+fastqc -o /home/elan5203/analysis/8_analysis_fastQC_rna /home/elan5203/data/raw_data/transcriptome/trimmed/SRR6040092_scaffold_06.*
+
+#SRR6040093 root
+fastqc -o /home/elan5203/analysis/8_analysis_fastQC_rna /home/elan5203/data/raw_data/transcriptome/trimmed/SRR6040093_scaffold_06.*
+
+#SRR6040094 aril 2
+fastqc -o /home/elan5203/analysis/8_analysis_fastQC_rna /home/elan5203/data/raw_data/transcriptome/trimmed/SRR6040094_scaffold_06.*
+
+#SRR6040096 stem
+fastqc -o /home/elan5203/analysis/8_analysis_fastQC_rna /home/elan5203/data/raw_data/transcriptome/trimmed/SRR6040096_scaffold_06.*
+
+#SRR6040097 aril 3
+fastqc -o /home/elan5203/analysis/8_analysis_fastQC_rna /home/elan5203/data/raw_data/transcriptome/trimmed/SRR6040096_scaffold_06.*
+
+#SRR6156066 Monthong aril 2
+fastqc -o /home/elan5203/analysis/8_analysis_fastQC_rna /home/elan5203/data/raw_data/transcriptome/trimmed/SRR6156066_scaffold_06.*
+
+#SRR6156067 Monthong aril 3
+fastqc -o /home/elan5203/analysis/8_analysis_fastQC_rna /home/elan5203/data/raw_data/transcriptome/trimmed/SRR6156067_scaffold_06.*
+
+#SRR6156069 Monthong aril 1
+fastqc -o /home/elan5203/analysis/8_analysis_fastQC_rna /home/elan5203/data/raw_data/transcriptome/trimmed/SRR6156069_scaffold_06.*
+
+

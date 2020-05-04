@@ -1,0 +1,22 @@
+#!/bin/bash -l
+#SBATCH -A g2020008
+#SBATCH -p core
+#SBATCH -n 4
+#SBATCH -t 07:00:00
+#SBATCH -J 11_job_trinity_SRR6040092
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user Elin.Antonsson.5203@student.uu.se
+
+# Load modules
+module load bioinfo-tools
+module load trinity/2.4.0
+module load samtools
+
+samtools view -S -b /home/elan5203/analysis/10_analysis_star/output_star_SRR6040092Aligned.out.sam > /home/elan5203/analysis/10_analysis_star/output_star_SRR6040092Aligned.out.bam
+
+samtools sort /home/elan5203/analysis/10_analysis_star/output_star_SRR6040092Aligned.out.bam -o /home/elan5203/analysis/10_analysis_star/output_star_SRR6040092Aligned.out.sorted.bam
+
+Trinity --genome_guided_bam /home/elan5203/analysis/10_analysis_star/output_star_SRR6040092Aligned.out.sorted.bam \
+--genome_guided_max_intron 10000 --max_memory 10G --CPU 4
+
+

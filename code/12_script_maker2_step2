@@ -1,0 +1,42 @@
+#!/bin/bash -l
+#SBATCH -A g2020008
+#SBATCH -p core
+#SBATCH -n 4
+#SBATCH -t 0:10:00
+#SBATCH -J 12_job_maker2
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user Elin.Antonsson.5203@student.uu.se
+
+module load bioinfo-tools
+module load maker/3.01.1-beta
+module load snap/2013-11-29 
+module load augustus/3.3.3
+
+#Move to right directory 
+cd /home/elan5203/analysis/12_analysis_maker2/12_maker.maker.output/
+
+#Extract results
+gff3_merge -d 4_pilon_output_master_datastore_index.log
+
+#mkdir step2
+#cd step2
+#Generate necessary files
+#maker2zff my_assembly.all.gff
+
+#Validate sequences
+#fathom genome.ann genome.dna -validate > snap_validate_output.txt
+
+#Find
+#cat snap_validate_output.txt | grep "error"
+
+#Remove error models
+#grep -vwE "MODEL6064" genome.ann > genome.ann2
+
+#Try again, hopefull not find errors
+#fathom genome.ann2 genome.dna -validate
+
+#fathom genome.ann genome.dna -categorize 1000
+#fathom uni.ann uni.dna -export 1000 -plus
+#forge export.ann export.dna
+
+#hmm-assembler.pl my_genome . > my_genome.hmm

@@ -1,0 +1,20 @@
+#!/bin/bash -l
+#SBATCH -A g2020008
+#SBATCH -p core
+#SBATCH -n 4
+#SBATCH -t 30:00:00
+#SBATCH -J 12_job_maker2
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user Elin.Antonsson.5203@student.uu.se
+
+module load bioinfo-tools
+module load maker/3.01.1-beta
+
+# I changed the maker_opts.ctl file again. The changes: 
+# snaphmm=/home/elan5203/analysis/12_analysis_maker2/4_pilon_output.maker.output/step2/my_genome.hmm #SNAP HMM file
+# est2genome=0
+# protein2genome=0
+
+# And then i ran maker for the second time in the folder where the predictions are
+cd /home/elan5203/analysis/12_analysis_maker2/4_pilon_output.maker.output/step2
+maker

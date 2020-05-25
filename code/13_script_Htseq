@@ -1,0 +1,23 @@
+#!/bin/bash -l
+#SBATCH -A g2020008
+#SBATCH -p core
+#SBATCH -n 4
+#SBATCH -t 15:00:00
+#SBATCH -J 12_job_maker2
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user Elin.Antonsson.5203@student.uu.se
+
+module load bioinfo-tools
+module load htseq/0.9.1
+
+cd /home/elan5203/analysis/13_analysis_htseq
+
+# removes nucleotides from gff file
+sed -n '1,489609p' /home/elan5203/analysis/12_analysis_maker2_new/4_pilon_output.maker.output_old/4_pilon_output.all.gff > 4_pilon_output_no_nuc.all.gff
+
+# Loop over all the runs and counts ther expression
+for SRR in SRR6040092 SRR6040093 SRR6040094 SRR6040095 SRR6040096 SRR6040097 SRR6156066 SRR6156067 SRR6156069
+do
+htseq-count -m union -f sam -i ID /home/elan5203/analysis/10_analysis_star/output_star_${SRR}Aligned.out.sam 4_pilon_output_no_nuc.all.gff >> ${SRR}_count.txt
+done
+

@@ -1,0 +1,40 @@
+#!/bin/bash -l
+#SBATCH -A g2020008
+#SBATCH -p core
+#SBATCH -n 4
+#SBATCH -t 20:00:00
+#SBATCH -J 12_job_maker2_step4
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user Elin.Antonsson.5203@student.uu.se
+
+module load bioinfo-tools
+module load maker/3.01.1-beta
+#module load augustus/3.3.3
+#module load GeneMark/4.57-es
+
+
+# Edited the maker_maker_opts.ctl as follows
+
+
+# est=/home/elan5203/analysis/11_analysis_trinity/trinity_out_dir/Trinity-GG.fasta #non-redundant set of assembled ESTs in fasta format (classic EST analysis)
+# protein=/home/elan5203/data/raw_data/reference/cotton_reference_UP000032304.fasta #protein sequence file in fasta format
+# snaphmm=/home/elan5203/analysis/12_analysis_maker2_new/4_pilon_output.maker.output/step2/my_genome.hmm #SNAP HMM file created after MAKER2 first-pass
+# gmhmm=/home/elan5203/analysis/12_analysis_maker2_new/genemark/gmhmm.mod #GeneMark HMM file
+# est2genome=0 #infer gene predictions directly from ESTs, 1 = yes, 0 = no
+# protein2genome=0 #gene prediction from protein homology, 1 = yes, 0 = no
+# augustus_species=durian #Augustus gene prediction species model
+# keep_preds=1
+
+cd /home/elan5203/analysis/12_analysis_maker2_new
+
+export AUGUSTUS_CONFIG_PATH=/home/elan5203/analysis/12_analysis_maker2_new/4_pilon_output.maker.output/step2/augustus/augustus_config/
+
+#Run maker a second time
+maker -base 4_pilon_output
+
+# Collate gff3 and fasta output
+#cd /home/elan5203/analysis/12_analysis_maker2_new/12_maker2.maker.output
+
+#base=12_maker2
+#gff3_merge  -d $base\_master_datastore_index.log #creates 12_maker2.all.gff
+#fasta_merge -d $base\_master_datastore_index.log 
